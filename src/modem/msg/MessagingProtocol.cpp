@@ -4,12 +4,8 @@ namespace firebase {
 namespace modem {
 namespace {
 const std::vector<String> kCommands {
-  "BEGIN_DB",
-  "GET",
-  "SET",
-  "PUSH",
-  "REMOVE",
-  "BEGIN_STREAM"
+  "BEGIN_MSG",
+  "MSG_TO_USERS",
 };
 }
 
@@ -19,7 +15,7 @@ const std::vector<String>& DatabaseProtocol::commands() const {
 
 void DatabaseProtocol::Execute(const String& command_name, InputStream* in,
                                OutputStream* out) {
-  if (command_name == "BEGIN_DB") {
+  if (command_name == "BEGIN_MSG") {
     BeginCommand command;
     if (command.execute(command_name, in, out)) {
       fbase_ = std::move(command.firebase());
@@ -27,7 +23,7 @@ void DatabaseProtocol::Execute(const String& command_name, InputStream* in,
     return;
   } else if (!fbase_) {
     in->drain();
-    out->println("-FAIL Must call BEGIN_DB before anything else.");
+    out->println("-FAIL Must call BEGIN_MSG before anything else.");
     return;
   }
 

@@ -11,6 +11,7 @@ class InputStream {
   virtual String readLine() = 0;
   // This call consumes the terminator.
   virtual String readStringUntil(const char terminator) = 0;
+  virtual int readBytes(char* buffer, int length) = 0;
   virtual void drain() = 0;
   virtual bool available() = 0;
 };
@@ -28,6 +29,10 @@ class ArduinoInputStream : public InputStream {
 
   String readStringUntil(const char terminator) {
     return stream_->readStringUntil(terminator);
+  }
+
+  int readBytes(char* buffer, int length) {
+    return stream_->readBytes(buffer, length);
   }
 
   void drain() {

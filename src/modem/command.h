@@ -8,6 +8,7 @@
 namespace firebase {
 namespace modem {
 
+// TODO(edcoyne) we don't use this parent class, we should drop it.
 class Command {
  public:
   Command(Firebase* fbase) : fbase_(fbase) {}

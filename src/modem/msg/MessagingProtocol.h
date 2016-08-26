@@ -2,13 +2,13 @@
 #define MODEM_DB_DATABASE_PROTOCOL_H
 
 #include "modem/SerialProtocol.h"
-#include "modem/db/commands.h"
+#include "modem/msg/commands.h"
 #include "Firebase.h"
 
 namespace firebase {
 namespace modem {
 
-class DatabaseProtocol : public SerialProtocol {
+class MessagingProtocol : public SerialProtocol {
  public:
   const std::vector<String>& commands() const override;
   void Execute(const String& command, InputStream* in, OutputStream* out) override;
