@@ -288,7 +288,7 @@ bool AddDataCommand::execute(const String& command, InputStream* in, OutputStrea
   return true; 
 }
 
-bool AddDataCommand::execute(const String& command, InputStream* in, OutputStream* out) {
+bool SendMsgCommand::execute(const String& command, InputStream* in, OutputStream* out) {
   if (in == nullptr || out == nullptr) {
     return false;
   }

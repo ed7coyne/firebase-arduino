@@ -5,7 +5,10 @@ namespace modem {
 namespace {
 const std::vector<String> kCommands {
   "BEGIN_MSG",
-  "MSG_TO_USERS",
+  "MSG",
+  "NOTIFICATION",
+  "ADD_DATA",
+  "SEND_MSG",
 };
 }
 
@@ -16,7 +19,7 @@ const std::vector<String>& DatabaseProtocol::commands() const {
 void DatabaseProtocol::Execute(const String& command_name, InputStream* in,
                                OutputStream* out) {
   if (command_name == "BEGIN_MSG") {
-    BeginCommand command;
+    BeginMsgCommand command;
     if (command.execute(command_name, in, out)) {
       fbase_ = std::move(command.firebase());
     }
